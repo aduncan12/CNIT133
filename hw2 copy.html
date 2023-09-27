@@ -1,0 +1,132 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homework 2 for JavaScript, jQuery, AJAX course at CCSF">
+    <link rel="stylesheet" href="styles.css">
+    <title>CNIT 133 Homework 2 - Basic Operations</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        let num1 = "";
+        let num2 = "";
+        let num3 = "";
+
+        function calculate() {
+            num1 = parseFloat(document.forms["hw2Form"].elements["input1"].value);
+            num2 = parseFloat(document.forms["hw2Form"].elements["input2"].value);
+            num3 = parseFloat(document.forms["hw2Form"].elements["input3"].value);
+            
+            sum = num1+num2+num3;
+            avg = (num1+num2+num3)/3;
+            prod = num1*num2*num3;
+            min = Math.min(num1, num2, num3);
+            max = Math.max(num1, num2, num3);
+            typeCheck = isNaN(sum);
+
+            console.log(typeCheck);
+
+            if (typeCheck === true) {
+                $(".textP").css("display", "none");
+                $("#errorMsg").css("display", "flex");
+            } else {
+                document.forms["hw2Form"].elements["numSum"].value = sum;
+                document.forms["hw2Form"].elements["numAvg"].value = avg;
+                document.forms["hw2Form"].elements["numProd"].value = prod;
+                document.forms["hw2Form"].elements["numMin"].value = min;
+                document.forms["hw2Form"].elements["numMax"].value = max;
+
+                $(".hw2Result").css("display", "none");
+                $(".hw2Result").fadeIn(800);
+                $(".textP").css("display", "flex");
+                $("#errorMsg").css("display", "none");
+            };
+        };
+
+        function clearForm() {
+            console.log('hi');
+            $("#errorMsg").css("display", "none");
+            $("#textArea").css("display", "block");
+            $(".textP").css("display", "block");
+        };
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <p id="pageTop"><a href="hw1.html">Back to Homework Page</a></p>
+        <h1 id="hw2Header">CNIT 133 Homework 2 - Basic Operations</h1>
+    </header>
+    
+    <!-- create borders and space between descriptions and assignments so links work -->
+    <section>
+        <div id="headerDiv">
+            <span class="partHeader"><a class="hw2Link" href="#part1Link">Go to Part 1</a></span><span class="partHeader"><a class="hw2Link" href="#part2Link">Go to Part 2</a></span>
+        </div>
+        
+        <!-- <h1 class="partHeader"></h1> -->
+
+        <div class="spaceDiv">        
+        </div>
+
+        <p class="hwDesc" id="part1Link">Part 1 is a script that creates a section on the page to display the xy, 12, and 89 in different styles.</p>
+        <script>
+            document.write("<div class='hw2Div'>");
+            document.write("<div id='part1Div'>");
+            document.write("<span class='hw2Span' style='font-weight: bold; color: red; font-family: Times New Roman'>xy </span>");
+            document.write("<span class='hw2Span' style='color: blue; font-family: Arial'>12 </span>");
+            document.write("<span class='hw2Span' style='font-style: italic; color: green; font-family: Impact'>89</span>");
+            document.write("</div>");
+            document.write("<p class='back2Link'><a href='#pageTop'>Back to Top</a></p>");
+            document.write("</div>");
+        </script>
+
+        <div class="spaceDiv">        
+        </div>
+
+        <p class="hwDesc" id="part2Link">Part 2 is a form that allows the user to enter in numbers and then calculate the various values.</p>
+        <div class="hw2Div">
+            <div id="part2Div">
+                <form name="hw2Form">
+                    <table id="hw2Table">
+                        <tr>
+                            <th colspan="3">The Numbers Game!</th>
+                        </tr>
+                        <tr>
+                            <th>Number One</th>
+                            <th>Number Two</th>
+                            <th>Number Three</th>
+                        </tr>
+                        <tr>
+                            <td><input class="hw2Input" type="text" id="input1"></td>
+                            <td><input class="hw2Input" type="text" id="input2"></td>
+                            <td><input class="hw2Input" type="text" id="input3"></td>
+                        </tr>
+                    </table>
+
+                    <div id="textArea">
+                        <p class="textP">The SUM is <input class="hw2Result" name="numSum" id="numSum"></input></p>
+                        <p class="textP">The AVERAGE is <input class="hw2Result" name="numAvg" id="numAvg"></input></p>
+                        <p class="textP">The PRODUCT is <input class="hw2Result" name="numProd" id="numProd"></input></p>
+                        <p class="textP">The SMALLEST NUMBER is <input class="hw2Result" name="numMin" id="numMin"></input></p>
+                        <p class="textP">The LARGEST NUMBER is <input class="hw2Result" name="numMax" id="numMax"></input></p>
+                        <p id="errorMsg">Please enter numbers only!</p>
+                    </div>
+
+                    <input type="button" value="Calculate" id="calcBut" onclick="calculate()">
+                    <input type="reset" value="Reset" id="resetBut" onclick="clearForm()">
+
+                </form>
+            </div>
+            <p class="back2Link"><a href="#pageTop">Back to Top</a></p>
+
+        </div>
+    </section>
+    
+    <footer>
+    </footer>   
+</body>
+
+</html>
