@@ -1,0 +1,205 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homework 2 for JavaScript, jQuery, AJAX course at CCSF">
+    <link rel="stylesheet" href="styles.css">
+    <title>CNIT 133 Homework 3 - Functions</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        let salesperson = "";
+        let amount1 = "";
+        let amount2 = "";
+        let amount3 = "";
+        let amount4 = "";
+
+        function calcAmount() {
+            let percent = (9/100);
+
+            salesperson = document.forms["hw3Form"].elements["sellerNameInput"].value;
+            amount1 = parseFloat(document.forms["hw3Form"].elements["pt2Input1"].value);
+            amount2 = parseFloat(document.forms["hw3Form"].elements["pt2Input2"].value);
+            amount3 = parseFloat(document.forms["hw3Form"].elements["pt2Input3"].value);
+            amount4 = parseFloat(document.forms["hw3Form"].elements["pt2Input4"].value);
+            
+            let typeCheck = [amount1, amount2, amount3, amount4];
+            console.log(typeCheck);
+
+            let negNum = "";
+
+            for (let i = 0; i < typeCheck.length; i++) {
+                if (typeCheck[i] < 0 || salesperson == "") {
+                    negNum = "true";
+                    $("#errorDiv").css("margin", "2% 0");
+                    $("#errorP").css("display", "block");
+                    document.forms["hw3Form"].elements["ptInput5"].value = "";
+                    document.forms["hw3Form"].elements["ptInput6"].value = "";
+                    document.forms["hw3Form"].elements["ptInput7"].value = "";
+                    document.forms["hw3Form"].elements["ptInput8"].value = "";
+                    document.forms["hw3Form"].elements["item1Sold"].value = "";
+                    document.forms["hw3Form"].elements["item2Sold"].value = "";
+                    document.forms["hw3Form"].elements["item3Sold"].value = "";
+                    document.forms["hw3Form"].elements["item4Sold"].value = "";
+                    document.forms["hw3Form"].elements["roundSold"].value = "";
+                    document.forms["hw3Form"].elements["roundEarned"].value = "";
+                }
+            };
+
+            console.log(negNum);
+
+            if (negNum !== "true" && salesperson !== "") {
+                $("#errorP").css("display", "none");
+                $("#errorDiv").css("margin", "10% 0");
+                document.forms["hw3Form"].elements["ptInput5"].value = amount1;
+                document.forms["hw3Form"].elements["ptInput6"].value = amount2;
+                document.forms["hw3Form"].elements["ptInput7"].value = amount3;
+                document.forms["hw3Form"].elements["ptInput8"].value = amount4;
+
+                total1 = amount1*20.99;
+                total2 = amount2*12.75;
+                total3 = amount3*9.95;
+                total4 = amount4*35.89;
+
+                sold1 = Math.round(total1*100)/100;
+                sold2 = Math.round(total2*100)/100;
+                sold3 = Math.round(total3*100)/100;
+                sold4 = Math.round(total4*100)/100;
+                
+                document.forms["hw3Form"].elements["item1Sold"].value = "$" + sold1;
+                document.forms["hw3Form"].elements["item2Sold"].value = "$" + sold2;
+                document.forms["hw3Form"].elements["item3Sold"].value = "$" + sold3;
+                document.forms["hw3Form"].elements["item4Sold"].value = "$" + sold4;
+
+                totalSold = (sold1+sold2+sold3+sold4);
+                roundSold = Math.round(totalSold*100)/100;
+
+                totalEarned = ((sold1+sold2+sold3+sold4)*percent)+250;
+                roundEarned = Math.round(totalEarned*100)/100;
+
+                document.forms["hw3Form"].elements["roundSold"].value = "$" + roundSold;
+                document.forms["hw3Form"].elements["roundEarned"].value = "$" + roundEarned;
+            };
+        };
+
+        function clearForm() {
+            console.log('hi');
+            $("#errorP").css("display", "none");
+        };
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <p id="pageTop"><a href="hw1.html">Back to Homework Page</a></p>
+        <h1 id="hw2Header" class="hwHeaders">CNIT 133 Homework 3 - Functions</h1>
+    </header>
+    
+    <section>
+        <div class="hw3Div">
+            <div id="part2Div">
+                <form name="hw3Form" id="hw3Pt2Form">
+                    <table>
+                        <tr>
+                            <th class="formHeader" colspan="2">Homework 3 - Part 2</th>
+                        </tr>
+                        <tr class="hw3Pt2Row">
+                            <th class="hw3Pt2TH">Seller's Name:</th><td id="tableData"><input class="hw3Input" type="text" id="sellerNameInput" title="Please make sure that the salesperson's name is spelled correctly"></td>
+                        </tr>
+                        <tr class="hw3Pt2Row">
+                            <td>For each item, type the quantity sold by the seller</td>
+                        </tr>
+                        <tr class="hw3Pt2Row">
+                            <th class="hw3Pt2TH">Item 1:</th><td id="tableData"><input class="hw3Input" type="number" id="pt2Input1"></td>
+                        </tr>
+                        <tr class="hw3Pt2Row">
+                            <th class="hw3Pt2TH">Item 2:</th><td id="tableData"><input class="hw3Input" type="number" id="pt2Input2"></td>
+                        </tr>
+                        <tr class="hw3Pt2Row">
+                            <th class="hw3Pt2TH">Item 3:</th><td id="tableData"><input class="hw3Input" type="number" id="pt2Input3"></td>
+                        </tr>
+                        <tr class="hw3Pt2Row">
+                            <th class="hw3Pt2TH">Item 4:</th><td id="tableData"><input class="hw3Input" type="number" id="pt2Input4"></td>
+                        </tr>
+                    </table>
+
+                    <div id="errorDiv">
+                        <p id="errorP">Please check Seller is submitted and numbers are valid.</p>
+                    </div>
+
+                    <div id="pt2But">
+                        <p><input type="button" value="Submit" id="calcBut" onclick="calcAmount()"></p>
+                        <p><input type="reset" value="Clear Form" id="resetBut" onclick="clearForm()"></p>
+                    </div>
+
+                    <!-- change inputs from text to number? -->
+                    <table class="hw3pt2Table2">
+                        <tr class="hw3TRow" id="hw3TRow2" colspan="4">
+                            <th class="hwTableGridItem">Item #</th>
+                            <th class="hwTableGridItem">Price</th>
+                            <th class="hwTableGridItem">Qty. Sold</th>
+                            <th class="hwTableGridItem">Total $</th>
+                        </tr>
+                        <tr class="hw3TRow" id="hw3TRow2">
+                            <td class="hwTableGridItem">1</td>
+                            <td class="hwTableGridItem">$20.99</td>
+                            <td class="hw3pt2TableData">
+                                <input class="hw3Input2" id="ptInput5" type="text" readonly>
+                            </td>
+                            <td class="hw3pt2TableData">
+                                <input class="hw3Input2" id="item1Sold" type="text" readonly>
+                            </td>
+                        </tr>
+                        <tr class="hw3TRow" id="hw3TRow2">
+                            <td class="hwTableGridItem">2</td>
+                            <td class="hwTableGridItem">$12.75</td>
+                            <td class="hw3pt2TableData">
+                                <input class="hw3Input2" id="ptInput6" type="text" readonly>
+                            </td>
+                            <td class="hw3pt2TableData">
+                                <input class="hw3Input2" id="item2Sold" type="text" readonly>
+                            </td>
+                        </tr>
+                        <tr class="hw3TRow" id="hw3TRow2">
+                            <td class="hwTableGridItem">3</td>
+                            <td class="hwTableGridItem">$9.95</td>
+                            <td class="hw3pt2TableData">
+                                <input class="hw3Input2" id="ptInput7" type="text" readonly>
+                            </td>
+                            <td class="hw3pt2TableData">
+                                <input class="hw3Input2" id="item3Sold" type="text" readonly>
+                            </td>
+                        </tr>
+                        <tr class="hw3TRow" id="hw3TRow2">
+                            <td class="hwTableGridItem">4</td>
+                            <td class="hwTableGridItem">$35.89</td>
+                            <td class="hw3pt2TableData">
+                                <input class="hw3Input2" id="ptInput8" type="text" readonly>
+                            </td>
+                            <td class="hw3pt2TableData">
+                                <input class="hw3Input2" id="item4Sold" type="text" readonly>
+                            </td>
+                        </tr>
+                    </table>
+
+                    <table class="hw3pt2Table2">
+                        <tr class="hw3TRow">
+                            <td class="hwTableGridItemTotal">Total Amount Sold</td><td id="tableData"><input class="hw3Input2" type="text" id="roundSold" readonly></td>
+                        </tr>
+                        <tr class="hw3TRow">
+                            <td class="hwTableGridItemTotal">Total Weekly Earnings</td><td id="tableData"><input class="hw3Input2" type="text" id="roundEarned" readonly></td>
+                        </tr>
+                    </table>
+                </form>
+            </div>
+            <p class="back2Link" id="hw3BackLink"><a href="hw3.html">Back to Homework 3</a></p>
+        </div>
+    </section>
+    
+    <footer>
+    </footer>   
+</body>
+
+</html>

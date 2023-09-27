@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homework 2 for JavaScript, jQuery, AJAX course at CCSF">
+    <link rel="stylesheet" href="styles.css">
+    <title>CNIT 133 Homework 2 - Basic Operations</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        let num1 = "";
+        let num2 = "";
+        let num3 = "";
+
+        function calculate() {
+            num1 = parseFloat(document.forms["hw2Form"].elements["input1"].value);
+            num2 = parseFloat(document.forms["hw2Form"].elements["input2"].value);
+            num3 = parseFloat(document.forms["hw2Form"].elements["input3"].value);
+            
+            sum = num1+num2+num3;
+            avg = (num1+num2+num3)/3;
+            prod = num1*num2*num3;
+            min = Math.min(num1, num2, num3);
+            max = Math.max(num1, num2, num3);
+            typeCheck = isNaN(sum);
+
+            console.log(typeCheck);
+
+            if (typeCheck === true) {
+                $(".textP").css("display", "none");
+                $("#errorMsg").css("display", "flex");
+            } else {
+                document.forms["hw2Form"].elements["numSum"].value = sum;
+                document.forms["hw2Form"].elements["numAvg"].value = avg;
+                document.forms["hw2Form"].elements["numProd"].value = prod;
+                document.forms["hw2Form"].elements["numMin"].value = min;
+                document.forms["hw2Form"].elements["numMax"].value = max;
+
+                $(".hw2Result").css("display", "none");
+                $(".hw2Result").fadeIn(800);
+                $(".textP").css("display", "flex");
+                $("#errorMsg").css("display", "none");
+            };
+        };
+
+        function clearForm() {
+            console.log('hi');
+            $("#errorMsg").css("display", "none");
+            $("#textArea").css("display", "block");
+            $(".textP").css("display", "block");
+        };
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <p id="pageTop"><a href="hw1.html">Back to Homework Page</a></p>
+        <h1 id="hw2Header" class="hwHeaders">CNIT 133 Homework 2 - Basic Operations</h1>
+    </header>
+    
+    <!-- create borders and space between descriptions and assignments so links work -->
+    <section>
+        <div class="hw2Div">
+            <div id="part2Div">
+                <form name="hw2Form">
+                    <table id="hw2Table">
+                        <tr>
+                            <th colspan="3">The Numbers Game!</th>
+                        </tr>
+                        <tr>
+                            <th>Number One</th>
+                            <th>Number Two</th>
+                            <th>Number Three</th>
+                        </tr>
+                        <tr>
+                            <td><input class="hw2Input" type="text" id="input1"></td>
+                            <td><input class="hw2Input" type="text" id="input2"></td>
+                            <td><input class="hw2Input" type="text" id="input3"></td>
+                        </tr>
+                    </table>
+
+                    <div class="textArea">
+                        <p class="textP">The SUM is <input class="hw2Result" name="numSum" id="numSum"></input></p>
+                        <p class="textP">The AVERAGE is <input class="hw2Result" name="numAvg" id="numAvg"></input></p>
+                        <p class="textP">The PRODUCT is <input class="hw2Result" name="numProd" id="numProd"></input></p>
+                        <p class="textP">The SMALLEST NUMBER is <input class="hw2Result" name="numMin" id="numMin"></input></p>
+                        <p class="textP">The LARGEST NUMBER is <input class="hw2Result" name="numMax" id="numMax"></input></p>
+                        <p id="errorMsg">Please enter numbers only!</p>
+                    </div>
+
+                    <input type="button" value="Calculate" id="calcBut" onclick="calculate()">
+                    <input type="reset" value="Reset" id="resetBut" onclick="clearForm()">
+
+                </form>
+            </div>
+            <p class="back2Link"><a href="hw2.html">Back to Homework 2</a></p>
+
+        </div>
+    </section>
+    
+    <footer>
+    </footer>   
+</body>
+
+</html>

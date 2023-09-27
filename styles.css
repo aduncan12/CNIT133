@@ -1,0 +1,234 @@
+body {
+    background-color: #FFFFFF;
+    color: #424242;
+    margin: 1vw 2vw;
+    background-image: linear-gradient(to right, #CA0C0CCF, #000000);
+}
+
+a {
+    text-decoration: none;
+    color: #424242;
+    display: flex;
+    justify-content: center;
+}
+
+p {
+    display: flex;
+}
+
+ul {
+    list-style-type: none;
+    width: 10%;
+    font-size: 18px;
+}
+
+li {
+    margin: 5px;
+    border: solid;
+    border-radius: 5px;
+}
+
+li a:hover {
+    background-color: #424242;
+    color: #FFFFFF;
+    margin: auto 0;
+    cursor: pointer;
+}
+
+.headerDiv {
+    margin: 2% 5%;
+}
+
+.hwLinks {
+    text-decoration: none;
+    justify-content: left;
+}
+
+.hw2Div {
+    margin: 1% 10%;
+    text-align: center;
+}
+
+.hw3Div {
+    margin: 1% 20%;
+    text-align: center;
+}
+
+#hw2Header, .hwDesc, .hwHeaders {
+    color:#FFFFFF99;
+    text-align: center;
+    margin: 0 15%;
+}
+
+.partHeader {
+    margin: 1% 10%;
+    display: flex;
+    font-size: 18px;
+    font-weight: bold;
+}
+
+#part1Div {
+    width: 25%;
+    background: #FFFFFF50;
+    border: 5px outset #42424280;
+    border-radius: 10px;
+    padding: 1% 0;
+}
+
+.spaceDiv {
+    margin: 5% 0;
+    padding: 0;
+}
+
+#part2Div {
+    background: #FFFFFF50;
+    border: 5px outset #42424280;
+    border-radius: 10px;
+    padding: 1% 0;
+    display: flex;
+    justify-content: center;
+}
+
+.formHeader {
+    font-size: 18px;
+}
+
+.textP {
+    margin: 3vh 0;
+    text-align: left;
+}
+
+.hw2Input {
+    width: 10vw;
+    color: #424242;
+    text-align: center;
+}
+
+.hw3Input {
+    width: 3vw;
+    color: #424242;
+    text-align: center;
+}
+
+.hw2Result, .hw3Result {
+    display: none;
+    background: transparent;
+    border: none;
+    width: 15vw;
+    margin: 0 5px;
+    color: #424242;
+    font-weight: bold;
+    font-size: 14px;
+}
+
+#hw3Table {
+    margin: 0 auto;
+    width: 20vw;
+}
+
+.hw3TRow {
+    display: flex;
+    justify-content: space-between;
+    text-align: left;
+    margin: 1vh 0;
+}
+
+#hw3Scores {
+    justify-content: center;
+}
+
+#roundAvg, #grade {
+    display: block;
+    width: 5%;
+    text-align: center;
+    padding: 0;
+}
+
+.hw3Pt2Row {
+    display: flex;
+    justify-content: left;
+    text-align: left;
+    margin: 1vh 0;
+}
+
+.hw3Pt2TH {
+    margin: auto 1vw auto 0;
+}
+
+#sellerNameInput {
+    width: 20vw;
+    text-align: left;
+}
+
+/* use the jQuery UI tooltip coding to display the message "Please make sure that the salesperson's name is spelled correctly". See this site for more about the jQuery UI tooltipLinks to an external site..
+#sellerName:hover {
+    
+} */
+
+#pt2Input1, #pt2Input2, #pt2Input3, #pt2Input4 {
+    width: 5vw;
+}
+
+#errorDiv {
+    margin: 10% 0;
+}
+
+#errorP {
+    margin: 0;
+    text-align: left;
+    display: none;
+}
+
+#pt2But {
+    text-align: center;
+}
+
+#pt2But p {
+    margin: 2vh 0;
+}
+
+.hw3pt2TableData {
+    text-align: center;
+}
+
+.hw3pt2Table2 {
+    width: 100%;
+}
+
+.hwTableGridItem {
+    width: 6vw;
+    text-align: center;
+}
+
+.hw3Input2 {
+    width: 5vw;
+    color: #424242;
+    text-align: right;
+}
+
+.hwTableGridItemTotal {
+    width: 13vw;
+}
+
+#totalSold, #totalEarned {
+    width: 10vw;
+}
+
+.back2Link {
+    width: 20%;
+    justify-content: center;
+    font-size: 14px;
+    text-decoration-line: underline;
+}
+
+#hw3BackLink {
+    width: 20%;
+}
+
+#errorMsg, #retakeMsg {
+    display: none;
+    justify-content: center;
+    font-weight: bold;
+    color: #FFFFFF99;
+    margin: 3vh 0;
+}

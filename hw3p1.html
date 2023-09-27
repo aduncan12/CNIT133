@@ -1,0 +1,124 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="description" content="Homework 3 for JavaScript, jQuery, AJAX course at CCSF">
+    <link rel="stylesheet" href="styles.css">
+    <title>CNIT 133 Homework 3 - Functions</title>
+
+    <script src="https://code.jquery.com/jquery-3.7.1.min.js" integrity="sha256-/JqT3SQfawRcv/BIHPThkBvs0OEvtFFmqPF/lYI/Cxo=" crossorigin="anonymous"></script>
+    <script>
+        let hwAvg = "";
+        let midExam = "";
+        let finalExam = "";
+        let participation = "";
+
+        function scores() {
+            hwAvg = parseFloat(document.forms["hw3Form"].elements["input1"].value);
+            midExam = parseFloat(document.forms["hw3Form"].elements["input2"].value);
+            finalExam = parseFloat(document.forms["hw3Form"].elements["input3"].value);
+            participation = parseFloat(document.forms["hw3Form"].elements["input4"].value);
+            let finalAvg = "";
+
+            if (hwAvg > 0 && hwAvg <= 100 && midExam > 0 && midExam <= 100 && finalExam > 0 && finalExam <= 100 && participation > 0 && participation <= 100) {
+                finalAvg = (.5 * hwAvg) + (.2 * midExam) + (.2 * finalExam) + (.1 * participation)
+            };
+
+            roundAvg = Math.round(finalAvg);
+
+            let grade = "";
+
+            if (roundAvg > 89 && roundAvg < 101) {
+                grade = "A";
+            } else if (roundAvg > 79 && roundAvg < 90) {
+                grade = "B";
+            } else if (roundAvg > 69 && roundAvg < 80) {
+                grade = "C";
+            } else if (roundAvg > 59 && roundAvg < 70) {
+                grade = "D";
+            } else {
+                grade = "F";
+            };
+
+            typeCheck = isNaN(roundAvg);
+
+            if (typeCheck === true || roundAvg == 0) {
+                $(".textP").css("display", "none");
+                $("#retakeMsg").css("display", "none");
+                $("#errorMsg").css("display", "flex");
+            } else if (grade == "A" || grade == "B" || grade == "C") {
+                document.forms["hw3Form"].elements["roundAvg"].value = roundAvg;
+                document.forms["hw3Form"].elements["grade"].value = grade;
+                $(".hw3Result").css("display", "none");
+                $(".hw3Result").fadeIn(800);
+                $(".textP").css("display", "flex");
+                $("#errorMsg").css("display", "none");
+                $("#retakeMsg").css("display", "none");
+            } else {
+                $(".textP").css("display", "none");
+                $("#errorMsg").css("display", "none");
+                $("#retakeMsg").css("display", "flex");
+            };
+        };
+
+        function clearForm() {
+            $("#errorMsg").css("display", "none");
+            $("#retakeMsg").css("display", "none");
+            $(".textArea").css("display", "block");
+            $(".textP").css("display", "flex");
+        };
+
+    </script>
+</head>
+
+<body>
+    <header>
+        <p id="pageTop"><a href="hw1.html">Back to Homework Page</a></p>
+        <h1 class="hwHeaders">CNIT 133 Homework 3 - Functions</h1>
+    </header>
+    
+    <section>
+        <div class="hw3Div">
+            <div id="part2Div">
+                <form name="hw3Form" id="hw3Form">
+                    <table id="hw3Table">
+                        <tr>
+                            <th class="formHeader" colspan="4">Student Grades</th>
+                        </tr>
+                        <tr class="hw3TRow">
+                            <th>Homework Average</th><td id="tableData"><input class="hw3Input" type="text" id="input1"></td>
+                        </tr>
+                        <tr class="hw3TRow">
+                            <th>Mid-Term Exam Score</th><td id="tableData"><input class="hw3Input" type="text" id="input2"></td>
+                        </tr>
+                        <tr class="hw3TRow">
+                            <th>Final Exam Score</th><td id="tableData"><input class="hw3Input" type="text" id="input3"></td>
+                        </tr>
+                        <tr class="hw3TRow">
+                            <th>Participation</th><td id="tableData"><input class="hw3Input" type="text" id="input4"></td>
+                        </tr>
+                    </table>
+
+                    <div class="textArea">
+                        <!-- align the input values with the text -->
+                        <p class="textP" id="hw3Scores">The student's average score is <input class="hw3Result" name="roundAvg" id="roundAvg"></input> for a grade of <input class="hw3Result" name="grade" id="grade"></input></p>
+                        <p id="errorMsg">Scores must be a number between 1-100</p>
+                        <p id="retakeMsg">Student must retake the course</p>
+                    </div>
+
+                    <input type="button" value="Submit" id="testBut" onclick="scores()">
+                    <input type="reset" value="Clear" id="resetBut" onclick="clearForm()">
+
+                </form>
+            </div>
+            <p class="back2Link" id="hw3BackLink"><a href="hw3.html">Back to Homework 3</a></p>
+
+        </div>
+    </section>
+    
+    <footer>
+    </footer>   
+</body>
+
+</html>
